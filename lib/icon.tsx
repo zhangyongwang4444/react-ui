@@ -1,5 +1,8 @@
 import * as React from "react";
 import './icons/wechat.svg';
+import './icons/alipay.svg';
+import './icons/qq.svg'
+import './icons/google.svg'
 
 interface IconProps {
     name: string;
@@ -10,7 +13,7 @@ const Icon: React.FunctionComponent<IconProps> = (props) => {
     return (
         <span>
             <svg>
-                <use xlinkHref="#wechat"></use>
+                <use xlinkHref={`#${props.name}`}/>
             </svg>
         </span>
     )
