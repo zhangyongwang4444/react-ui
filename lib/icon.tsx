@@ -5,16 +5,13 @@ import {SVGAttributes} from "react";
 
 interface IconProps extends SVGAttributes<SVGElement> {
     name: string;
-    onClick:React.MouseEventHandler<SVGElement>;
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
     return (
         <span >
             <svg className="react-ui-icon"
-                 onClick={props.onClick}
-                 onMouseEnter={props.onMouseEnter}
-                 onMouseLeave={props.onMouseLeave}
+                 {...props}
             >
                 <use xlinkHref={`#${props.name}`}/>
             </svg>

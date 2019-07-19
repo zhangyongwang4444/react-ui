@@ -12,6 +12,7 @@ ReactDOM.render(<div>
           onClick={fn}
           onMouseEnter={()=>console.log('enter')}
           onMouseLeave={()=>console.log('leave')}
+          onTouchStart={()=>console.log('touchstart')}
     />
 </div>, document.querySelector('#root'));
 
