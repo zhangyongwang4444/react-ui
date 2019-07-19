@@ -9,7 +9,7 @@ const fn:React.MouseEventHandler<SVGElement> = (e)=>{
 
 ReactDOM.render(<div>
     <Icon name="wechat"
-          // className="qqqqq"
+          className="qqqqq"
           onClick={fn}
           onMouseEnter={()=>console.log('enter')}
           onMouseLeave={()=>console.log('leave')}
