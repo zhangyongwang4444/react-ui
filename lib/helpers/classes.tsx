@@ -1,5 +1,5 @@
 function classes(...names: (string | undefined)[]){
-    return names.join(' ');
+    return names.filter(Boolean).join(' ');
 }
 
 export default classes;
