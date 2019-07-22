@@ -11,15 +11,3 @@ exports[`icon render success 1`] = `
   </svg>
 </span>
 `;
-
-exports[`icon 是个 svg 1`] = `
-<span>
-  <svg
-    className="react-ui-icon"
-  >
-    <use
-      xlinkHref="#wechat"
-    />
-  </svg>
-</span>
-`;
