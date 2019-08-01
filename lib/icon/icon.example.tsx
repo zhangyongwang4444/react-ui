@@ -13,3 +13,4 @@ const IconExample: React.FunctionComponent = () => {
 };
 
 export default IconExample;
+
