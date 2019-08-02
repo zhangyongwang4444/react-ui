@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import Dialog from "./dialog";
+import Dialog, {alert} from "./dialog";
 
 export default function () {
     const [x, setX] = useState(false);
     const [y, setY] = useState(false);
     return (
         <div>
-            <div>
+            <div style={{position: 'relative', zIndex: 10, border: '1px solid red ', color: 'red'}}>
                 <h1>example 1 </h1>
                 <button onClick={() => setX(!x)}>click</button>
                 <Dialog visible={x} buttons={
@@ -44,7 +44,7 @@ export default function () {
             </div>
             <div>
                 <h1>example 3 </h1>
-                <button onClick={() => alert('1')}/>
+                <button onClick={() => alert('1')}>alert</button>
             </div>
         </div>
 

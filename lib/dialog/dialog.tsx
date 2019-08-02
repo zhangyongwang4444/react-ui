@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 interface Props {
     visible: boolean;
-    buttons: Array<ReactElement>
+    buttons?: Array<ReactElement>
     onClose: React.MouseEventHandler
     closeOnclickMask?: boolean
 }
@@ -34,7 +34,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
                 <header className={sc('header')}>提示</header>
                 <main className={sc('main')}> {props.children}</main>
                 <footer className={sc('footer')}>
-                    {props.buttons.map((button, index) =>
+                    {props.buttons && props.buttons.map((button, index) =>
                         React.cloneElement(button, {key: index})
                     )}
                 </footer>
@@ -50,5 +50,21 @@ Dialog.defaultProps = {
     closeOnclickMask: false
 };
 
+const alert = (content: string) => {
+    const component = <Dialog
+        onClose={() => {
+            ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+            ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
+            div.remove();  // 再删除 div
+        }}
+        visible={true}
+    >{content}</Dialog>;
+
+    const div = document.createElement('div');
+    document.body.append(div);
+    ReactDOM.render(component, div);
+};
+
+export {alert}
 export default Dialog;
 
