@@ -74,7 +74,7 @@ const modal = (content: ReactNode, buttons?: Array<ReactElement>) => {
 };
 
 const alert = (content: string) => {
-    const button = <button onClick={() => close}>OK</button>;
+    const button = <button onClick={() => close()}>OK</button>;
     const close = modal(content, [button])
 };
 
