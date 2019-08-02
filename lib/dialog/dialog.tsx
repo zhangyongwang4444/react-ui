@@ -33,11 +33,13 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
                 </div>
                 <header className={sc('header')}>提示</header>
                 <main className={sc('main')}> {props.children}</main>
+                {props.buttons && props.buttons.length > 0 &&
                 <footer className={sc('footer')}>
                     {props.buttons && props.buttons.map((button, index) =>
                         React.cloneElement(button, {key: index})
                     )}
                 </footer>
+                }
             </div>
         </Fragment> :
         null;
