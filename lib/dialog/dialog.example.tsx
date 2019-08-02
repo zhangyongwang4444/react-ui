@@ -1,11 +1,23 @@
 import React, {useState} from 'react'
-import Dialog, {alert} from "./dialog";
+import Dialog, {alert, confirm} from "./dialog";
 
 export default function () {
     const [x, setX] = useState(false);
     const [y, setY] = useState(false);
     return (
         <div>
+            <div>
+                <h1>example 3 </h1>
+                <button onClick={() => alert('1')}>alert</button>
+                <button onClick={() => confirm('1',
+                    () => {
+                        console.log('用户点击了yes')
+                    },
+                    () => {
+                        console.log('用户点击了no')
+                    })}>confirm
+                </button>
+            </div>
             <div style={{position: 'relative', zIndex: 10, border: '1px solid red ', color: 'red'}}>
                 <h1>example 1 </h1>
                 <button onClick={() => setX(!x)}>click</button>
@@ -42,10 +54,7 @@ export default function () {
                     <div>hi</div>
                 </Dialog>
             </div>
-            <div>
-                <h1>example 3 </h1>
-                <button onClick={() => alert('1')}>alert</button>
-            </div>
+
         </div>
 
     )

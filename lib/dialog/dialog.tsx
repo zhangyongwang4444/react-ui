@@ -51,20 +51,54 @@ Dialog.defaultProps = {
 };
 
 const alert = (content: string) => {
-    const component = <Dialog
-        onClose={() => {
-            ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-            ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
-            div.remove();  // 再删除 div
-        }}
-        visible={true}
-    >{content}</Dialog>;
+    const component =
+        <Dialog
+            onClose={() => {
+                ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+                ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
+                div.remove();  // 再删除 div
+            }}
+            visible={true}
+        >
+            {content}
+        </Dialog>;
 
     const div = document.createElement('div');
     document.body.append(div);
     ReactDOM.render(component, div);
 };
 
-export {alert}
+const confirm = (content: string, yes?: () => void, no?: () => void) => {
+    const onYes = () => {
+        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+        ReactDOM.unmountComponentAtNode(div);
+        div.remove();
+        yes && yes();
+    };
+    const onNo = () => {
+        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+        ReactDOM.unmountComponentAtNode(div);
+        div.remove();
+        no && no();
+    };
+    const component =
+        <Dialog
+            onClose={() => {
+            }}
+            visible={true}
+            buttons={[<button onClick={onYes}>yes</button>, <button onClick={onNo}>no</button>]}
+        >
+            {content}
+        </Dialog>;
+
+    const div = document.createElement('div');
+    document.body.append(div);
+    ReactDOM.render(component, div);
+};
+
+const modal = () => {
+};
+
+export {alert, confirm}
 export default Dialog;
 
