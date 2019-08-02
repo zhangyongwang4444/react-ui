@@ -51,14 +51,16 @@ Dialog.defaultProps = {
 };
 
 const alert = (content: string) => {
+    const onClose = () => {
+        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+        ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
+        div.remove();  // 再删除 div
+    };
     const component =
         <Dialog
-            onClose={() => {
-                ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-                ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
-                div.remove();  // 再删除 div
-            }}
+            onClose={onClose}
             visible={true}
+            buttons={[<button onClick={onClose}>OK</button>]}
         >
             {content}
         </Dialog>;
