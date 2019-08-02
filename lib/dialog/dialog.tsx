@@ -52,15 +52,18 @@ Dialog.defaultProps = {
     closeOnclickMask: false
 };
 
-const modal = (content: ReactNode, buttons?: Array<ReactElement>) => {
-    const onClose = () => {
+const modal = (content: ReactNode, buttons?: Array<ReactElement>, afterClose?: () => void) => {
+    const close = () => {
         ReactDOM.render(React.cloneElement(component, {visible: false}), div);
         ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
         div.remove();  // 再删除 div
     };
     const component =
         <Dialog
-            onClose={onClose}
+            onClose={() => {
+                close();
+                afterClose && afterClose();
+            }}
             visible={true}
             buttons={buttons}
         >
@@ -70,7 +73,7 @@ const modal = (content: ReactNode, buttons?: Array<ReactElement>) => {
     const div = document.createElement('div');
     document.body.append(div);
     ReactDOM.render(component, div);
-    return onClose;
+    return close;
 };
 
 const alert = (content: string) => {
@@ -88,7 +91,7 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
         no && no();
     };
     const buttons = [<button onClick={onYes}>yes</button>, <button onClick={onNo}>no</button>];
-    const close = modal(content, buttons)
+    const close = modal(content, buttons, no);
 };
 
 
