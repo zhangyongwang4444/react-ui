@@ -112,6 +112,7 @@ const modal = (content: ReactNode) => {
     const div = document.createElement('div');
     document.body.append(div);
     ReactDOM.render(component, div);
+    return onClose;  // 函数返回 操纵内部变量的 API
 };
 export {alert, confirm, modal}
 export default Dialog;
