@@ -83,8 +83,7 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
     };
     const component =
         <Dialog
-            onClose={() => {
-            }}
+            onClose={onNo}
             visible={true}
             buttons={[<button onClick={onYes}>yes</button>, <button onClick={onNo}>no</button>]}
         >
@@ -94,9 +93,6 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
     const div = document.createElement('div');
     document.body.append(div);
     ReactDOM.render(component, div);
-};
-
-const modal = () => {
 };
 
 export {alert, confirm}
