@@ -53,6 +53,10 @@ Dialog.defaultProps = {
 };
 
 const alert = (content: string) => {
+    x(content, [<button>OK</button>])
+};
+
+const x = (content: any, buttons: any) => {
     const onClose = () => {
         ReactDOM.render(React.cloneElement(component, {visible: false}), div);
         ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
@@ -62,7 +66,7 @@ const alert = (content: string) => {
         <Dialog
             onClose={onClose}
             visible={true}
-            buttons={[<button onClick={onClose}>OK</button>]}
+            buttons={buttons}
         >
             {content}
         </Dialog>;
@@ -70,19 +74,22 @@ const alert = (content: string) => {
     const div = document.createElement('div');
     document.body.append(div);
     ReactDOM.render(component, div);
+    return onClose;
 };
 
+
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
-    const onYes = () => {
+    const onClose = () => {
         ReactDOM.render(React.cloneElement(component, {visible: false}), div);
         ReactDOM.unmountComponentAtNode(div);
         div.remove();
+    };
+    const onYes = () => {
+        onClose();
         yes && yes();
     };
     const onNo = () => {
-        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
+        onClose();
         no && no();
     };
     const component =
