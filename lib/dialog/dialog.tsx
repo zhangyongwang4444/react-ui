@@ -52,11 +52,7 @@ Dialog.defaultProps = {
     closeOnclickMask: false
 };
 
-const alert = (content: string) => {
-    x(content, [<button>OK</button>])
-};
-
-const x = (content: any, buttons: any) => {
+const x = (content: any, buttons?: any) => {
     const onClose = () => {
         ReactDOM.render(React.cloneElement(component, {visible: false}), div);
         ReactDOM.unmountComponentAtNode(div);  // 把组件从 div 上卸载下来
@@ -77,54 +73,28 @@ const x = (content: any, buttons: any) => {
     return onClose;
 };
 
+const alert = (content: string) => {
+    x(content, [<button>OK</button>])
+};
 
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
-    const onClose = () => {
-        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-    };
     const onYes = () => {
-        onClose();
+        close();
         yes && yes();
     };
     const onNo = () => {
-        onClose();
+        close();
         no && no();
     };
-    const component =
-        <Dialog
-            onClose={onNo}
-            visible={true}
-            buttons={[<button onClick={onYes}>yes</button>, <button onClick={onNo}>no</button>]}
-        >
-            {content}
-        </Dialog>;
-
-    const div = document.createElement('div');
-    document.body.append(div);
-    ReactDOM.render(component, div);
+    const buttons = [<button onClick={onYes}>yes</button>, <button onClick={onNo}>no</button>];
+    const close = x(content, buttons)
 };
 
 const modal = (content: ReactNode) => {
-    const onClose = () => {
-        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-    };
-    const component =
-        <Dialog
-            onClose={onClose}
-            visible={true}
-        >
-            {content}
-        </Dialog>;
-
-    const div = document.createElement('div');
-    document.body.append(div);
-    ReactDOM.render(component, div);
-    return onClose;  // 函数返回 操纵内部变量的 API
+    return x(content);
 };
+
+
 export {alert, confirm, modal}
 export default Dialog;
 
