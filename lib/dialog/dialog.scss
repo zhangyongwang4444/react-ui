@@ -1,8 +1,8 @@
+@import '../helper';
+
 .react-ui-dialog {
   position: fixed;
-  width: 100px;
-  height: 10em;
-  border: 10px solid red;
+  min-width: 35em;
   border-radius: 4px;
   background: #fff;
   top: 50%;
@@ -19,28 +19,36 @@
   }
 
   &-header {
-    &::after {
-      content: '';
-      width: 100px;
-      height: 30px;
-      background: green;
-      display: block;
-      border: 10px solid blue;
-    }
+    font-size: 22px;
+    padding: 8px 16px;
+    border-bottom: 1px solid gray;
   }
 
   &-main {
-
+    padding: 8px 16px;
+    min-height: 6em;
   }
 
   &-footer {
-
+    padding: 8px 16px;
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: flex-end;
   }
 
   &-close {
-
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    background: $main-color;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
-
 }
 
