@@ -74,7 +74,8 @@ const x = (content: any, buttons?: any) => {
 };
 
 const alert = (content: string) => {
-    x(content, [<button>OK</button>])
+    const button = <button onClick={() => close}>OK</button>;
+    const close = x(content, [button])
 };
 
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
