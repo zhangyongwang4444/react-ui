@@ -42,6 +42,10 @@ export default function () {
                     <div>hi</div>
                 </Dialog>
             </div>
+            <div>
+                <h1>example 3 </h1>
+                <button onClick={() => alert('1')}/>
+            </div>
         </div>
 
     )
