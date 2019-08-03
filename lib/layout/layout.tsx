@@ -1,8 +1,12 @@
 import React from 'react';
+import {scopedClassMaker} from "../classes";
 
-const Layout: React.FunctionComponent = () => {
+const sc = scopedClassMaker('react-ui-layout');
+const Layout: React.FunctionComponent = (props) => {
     return (
-        <div>x</div>
+        <div className={sc()}>
+            {props.children}
+        </div>
     )
 };
 

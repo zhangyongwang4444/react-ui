@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header: React.FunctionComponent = () => {
     return (
-        <div>x</div>
+        <div>header</div>
     )
 };
 
