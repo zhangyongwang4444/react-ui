@@ -11,7 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
 const Layout: React.FunctionComponent<Props> = (props) => {
     const {className, ...rest} = props;
     return (
-        <div className={[sc(), className].join(' ')} {...rest} >
+        <div className={sc('', {extra: className})} {...rest} >
             {props.children}
         </div>
     )
