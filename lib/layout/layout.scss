@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
 
-  &.hasAside {
+  &.react-ui-layout-hasAside {
     flex-direction: row;
     .react-ui-layout{
       flex-direction: column;
