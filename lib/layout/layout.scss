@@ -9,4 +9,10 @@
     flex-grow: 1;
     border: 1px solid green;
   }
+
+  & & {
+    flex-grow: 1;
+    border: 1px solid blue;
+    flex-direction: row;
+  }
 }
