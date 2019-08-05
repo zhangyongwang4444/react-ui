@@ -14,22 +14,23 @@ interface ClassToggles {
 
 function scopedClassMaker(prefix: string) {
     return function (name: string | ClassToggles, options?: Options) {
-        let name2;
-        let result;
-        if (typeof name === 'string' || name === undefined) {
-            name2 = {[name]: name}
-        } else {
-            name2 = name
-        }
-        const name3 = Object.entries(name2).filter(kv => kv[1] !== false).map(kv => kv[0]);
-        result = name3.map(name =>
-            [prefix, name].filter(Boolean).join('-')
-        ).join(' ');
+        const namesObject = (typeof name === 'string' || name === undefined) ?
+            {[name]: name} :
+            name;
+        const scoped = Object
+            .entries(namesObject)
+            .filter(kv => kv[1] !== false)
+            .map(kv => kv[0])
+            .map(name =>
+                [prefix, name]
+                    .filter(Boolean)
+                    .join('-'))
+            .join(' ');
 
         if (options && options.extra) {
-            return [result, options.extra].filter(Boolean).join(' ');
+            return [scoped, options.extra].filter(Boolean).join(' ');
         } else {
-            return result;
+            return scoped;
         }
     };
 }
