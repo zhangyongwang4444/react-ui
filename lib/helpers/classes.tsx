@@ -17,7 +17,7 @@ function scopedClassMaker(prefix: string) {
         const namesObject = (typeof name === 'string' || name === undefined) ?
             {[name]: name} :
             name;
-        const scoped = Object
+        return Object
             .entries(namesObject)
             .filter(kv => kv[1] !== false)
             .map(kv => kv[0])
@@ -25,13 +25,8 @@ function scopedClassMaker(prefix: string) {
                 [prefix, name]
                     .filter(Boolean)
                     .join('-'))
+            .concat(options && options.extra || [])
             .join(' ');
-
-        if (options && options.extra) {
-            return [scoped, options.extra].filter(Boolean).join(' ');
-        } else {
-            return scoped;
-        }
     };
 }
 
