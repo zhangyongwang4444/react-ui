@@ -13,12 +13,10 @@ interface ClassToggles {
 }
 
 function scopedClassMaker(prefix: string) {
-    return function (name: string | ClassToggles, options?: Options) {
-        const namesObject = (typeof name === 'string' || name === undefined) ?
-            {[name]: name} :
-            name;
-        return Object
-            .entries(namesObject)
+
+    return (name: string | ClassToggles, options?: Options) =>
+        Object
+            .entries(name instanceof Object ? name : {[name]: name})
             .filter(kv => kv[1] !== false)
             .map(kv => kv[0])
             .map(name =>
@@ -27,7 +25,6 @@ function scopedClassMaker(prefix: string) {
                     .join('-'))
             .concat(options && options.extra || [])
             .join(' ');
-    };
 }
 
 export {scopedClassMaker}
