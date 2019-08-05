@@ -1,4 +1,4 @@
-function classes(...names: (string | undefined)[]){
+function classes(...names: (string | undefined)[]) {
     return names.filter(Boolean).join(' ');
 }
 
@@ -17,12 +17,14 @@ function scopedClassMaker(prefix: string) {
         let name2;
         let result;
         if (typeof name === 'string' || name === undefined) {
-            name2 = name;
-            result = [prefix, name2].filter(Boolean).join('-');
+            name2 = [name]
+            result = name2.map(name =>
+                [prefix, name].filter(Boolean).join('-')
+            ).join(' ')
         } else {
             name2 = Object.entries(name).filter(kv => kv[1]).map(kv => kv[0]);
-            result = name2.map(n =>
-                [prefix, n].filter(Boolean).join('-')
+            result = name2.map(name =>
+                [prefix, name].filter(Boolean).join('-')
             ).join(' ');
         }
         if (options && options.extra) {
