@@ -36,7 +36,6 @@ describe('scopedClassMaker', () => {
         expect(sc({y: true, z: false})).toEqual('react-ui-layout-y');
         expect(sc({y: true, z: true})).toEqual('react-ui-layout-y react-ui-layout-z');
         expect(sc({y: true, z: true}, {extra: 'red'})).toEqual('react-ui-layout-y react-ui-layout-z red');
-
     })
 })
 
