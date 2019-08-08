@@ -5,17 +5,19 @@ import IconExample from "./lib/icon/icon.example";
 import ButtonExample from "./lib/button.example";
 import DialogExample from "./lib/dialog/dialog.example";
 import LayoutExample from "./lib/layout/layout.example";
+import {Layout, Header, Aside, Content, Footer} from "./lib/layout/layout";
+
 
 ReactDOM.render(
     <Router>
-        <div>
-            <header>
+        <Layout style={{border: '1px solid red'}}>
+            <Header>
                 <div className="logo">
                     react-ui
                 </div>
-            </header>
-            <div>
-                <aside>
+            </Header>
+            <Layout>
+                <Aside>
                     <h2>组件</h2>
                     <ul>
                         <li><Link to="/icon">Icon</Link></li>
@@ -23,15 +25,18 @@ ReactDOM.render(
                         <li><Link to="/dialog">Dialog</Link></li>
                         <li><Link to="/layout">Layout</Link></li>
                     </ul>
-                </aside>
-                <main>
+                </Aside>
+                <Content>
                     <Route path="/icon" component={IconExample}/>
                     <Route path="/button" component={ButtonExample}/>
                     <Route path="/dialog" component={DialogExample}/>
                     <Route path="/layout" component={LayoutExample}/>
-                </main>
-            </div>
-        </div>
+                </Content>
+            </Layout>
+            <Footer>
+                footer
+            </Footer>
+        </Layout>
     </Router>
     , document.querySelector('#root'));
 
