@@ -6,18 +6,18 @@ import ButtonExample from "./lib/button.example";
 import DialogExample from "./lib/dialog/dialog.example";
 import LayoutExample from "./lib/layout/layout.example";
 import {Layout, Header, Aside, Content, Footer} from "./lib/layout/layout";
-
+import './example.scss';
 
 ReactDOM.render(
     <Router>
-        <Layout style={{border: '1px solid red'}}>
-            <Header>
+        <Layout className="page">
+            <Header style={{border: '1px solid green'}}>
                 <div className="logo">
                     react-ui
                 </div>
             </Header>
             <Layout>
-                <Aside>
+                <Aside style={{border: '1px solid blue'}}>
                     <h2>组件</h2>
                     <ul>
                         <li><Link to="/icon">Icon</Link></li>
@@ -33,7 +33,7 @@ ReactDOM.render(
                     <Route path="/layout" component={LayoutExample}/>
                 </Content>
             </Layout>
-            <Footer>
+            <Footer style={{border: '1px solid black'}}>
                 footer
             </Footer>
         </Layout>
