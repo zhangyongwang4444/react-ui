@@ -8,11 +8,14 @@ import LayoutExample from "./lib/layout/layout.example";
 import {Layout, Header, Aside, Content, Footer} from "./lib/layout/layout";
 import './example.scss';
 
+const logo = require('./logo.png'); // 动态加载
+console.log(logo);
 ReactDOM.render(
     <Router>
         <Layout className="page">
             <Header style={{border: '1px solid green'}}>
                 <div className="logo">
+                    <img src={logo} alt=""/>
                     react-ui
                 </div>
             </Header>
