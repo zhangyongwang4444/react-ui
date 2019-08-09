@@ -13,10 +13,10 @@ console.log(logo);
 ReactDOM.render(
     <Router>
         <Layout className="page">
-            <Header style={{border: '1px solid green'}}>
+            <Header className="header">
                 <div className="logo">
-                    <img src={logo} alt=""/>
-                    react-ui
+                    <img src={logo} width="48" height="48" alt=""/>
+                    <span>react-ui</span>
                 </div>
             </Header>
             <Layout>

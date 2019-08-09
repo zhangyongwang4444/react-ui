@@ -13,5 +13,25 @@
 }
 
 .page {
-
+  background: #ffffff;
 }
+
+.header {
+  background: #eeeeee;
+  padding: 8px 0;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    > img {
+      margin-right: 8px;
+    }
+
+    > span {
+      color: #00ADB5;
+      font-size: 32px;
+    }
+  }
+}
+
