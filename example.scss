@@ -12,11 +12,11 @@
   box-sizing: border-box
 }
 
-.page {
+.site-page {
   background: #ffffff;
 }
 
-.header {
+.site-header {
   background: #eeeeee;
   padding: 8px 0;
 
@@ -31,6 +31,21 @@
     > span {
       color: #00ADB5;
       font-size: 32px;
+    }
+  }
+}
+
+.site-aside {
+  h2 {
+
+  }
+
+  ul {
+    padding: 8px;
+    min-width: 12em;
+
+    > li {
+      padding: 8px;
     }
   }
 }

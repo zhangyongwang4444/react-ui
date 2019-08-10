@@ -12,15 +12,15 @@ const logo = require('./logo.png'); // 动态加载
 console.log(logo);
 ReactDOM.render(
     <Router>
-        <Layout className="page">
-            <Header className="header">
+        <Layout className="site-page">
+            <Header className="site-header">
                 <div className="logo">
                     <img src={logo} width="48" height="48" alt=""/>
                     <span>react-ui</span>
                 </div>
             </Header>
             <Layout>
-                <Aside style={{border: '1px solid blue'}}>
+                <Aside className="site-aside">
                     <h2>组件</h2>
                     <ul>
                         <li><Link to="/icon">Icon</Link></li>
