@@ -25,7 +25,7 @@ const Demo: React.FunctionComponent<Props> = (props) => {
     );
     return (
         <div>
-            <div>
+            <div className="example">
                 {props.children}
             </div>
             <div>
