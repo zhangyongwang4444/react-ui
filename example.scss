@@ -23,6 +23,7 @@ ul, ol {
 a {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 $padding: 16px;
@@ -66,14 +67,22 @@ $border-color: #eeeeee;
   }
 
   ul {
-    padding: 0 $padding;
+
     min-width: 12em;
 
     > li {
-      padding: 8px 0;
-
       a {
-        color: $main-color
+        padding: 8px $padding;
+        color: #333;
+
+        &:hover {
+          color: $main-color
+        }
+
+        &.active {
+          color: #fff;
+          background: $main-color;
+        }
       }
     }
   }
