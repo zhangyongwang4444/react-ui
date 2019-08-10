@@ -1,17 +1,17 @@
 import * as React from 'react';
 import Highlight, {defaultProps} from "prism-react-renderer";
+import {useState} from "react";
 
 interface Props {
     code: string;
 }
 
 const Demo: React.FunctionComponent<Props> = (props) => {
-    return (
-        <div>
-            {props.children}
-            <Highlight {...defaultProps} code={props.code} language="jsx">
-                {({className, style, tokens, getLineProps, getTokenProps}) => (
-                    <pre className={className} style={style}>
+    const [codeVisible, setCodeVisible] = useState(false);
+    const code = (
+        <Highlight {...defaultProps} code={props.code} language="jsx">
+            {({className, style, tokens, getLineProps, getTokenProps}) => (
+                <pre className={className} style={style}>
               {tokens.map((line, i) => (
                   <div {...getLineProps({line, key: i})}>
                       {line.map((token, key) => (
@@ -20,8 +20,20 @@ const Demo: React.FunctionComponent<Props> = (props) => {
                   </div>
               ))}
             </pre>
-                )}
-            </Highlight>
+            )}
+        </Highlight>
+    );
+    return (
+        <div>
+            <div>
+                {props.children}
+            </div>
+            <div>
+                <button onClick={() => setCodeVisible(!codeVisible)}>查看代码</button>
+                {
+                    codeVisible && code
+                }
+            </div>
         </div>
     )
 };
