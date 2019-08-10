@@ -8,8 +8,10 @@ import LayoutExample from "./lib/layout/layout.example";
 import {Layout, Header, Aside, Content, Footer} from "./lib/layout/layout";
 import './example.scss';
 
+const x = require('!!raw-loader!./lib/icon/icon.example.tsx'); // require 支持自定义加载方式; !! 开启自定义加载方式的标志
+console.log(x.default);
 const logo = require('./logo.png'); // 动态加载
-console.log(logo);
+
 ReactDOM.render(
     <Router>
         <Layout className="site-page">
