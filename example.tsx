@@ -29,15 +29,15 @@ ReactDOM.render(
                         <li><Link to="/layout">Layout</Link></li>
                     </ul>
                 </Aside>
-                <Content>
+                <Content className="site-main">
                     <Route path="/icon" component={IconExample}/>
                     <Route path="/button" component={ButtonExample}/>
                     <Route path="/dialog" component={DialogExample}/>
                     <Route path="/layout" component={LayoutExample}/>
                 </Content>
             </Layout>
-            <Footer style={{border: '1px solid black'}}>
-                footer
+            <Footer className="site-footer">
+                &copy; 张永旺
             </Footer>
         </Layout>
     </Router>
