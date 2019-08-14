@@ -7,6 +7,7 @@ import LayoutExample from "./lib/layout/layout.example";
 import {Layout, Header, Aside, Content, Footer} from "./lib/layout/layout";
 import './example.scss';
 import IconDemo from "./lib/icon/icon.demo";
+import FormExample from "./lib/form/form.example";
 
 
 const logo = require('./logo.png'); // 动态加载
@@ -27,6 +28,7 @@ ReactDOM.render(
                         <li><NavLink to="/icon">Icon</NavLink></li>
                         <li><NavLink to="/dialog">Dialog</NavLink></li>
                         <li><NavLink to="/layout">Layout</NavLink></li>
+                        <li><NavLink to="/form">Form</NavLink></li>
                     </ul>
                 </Aside>
                 <Content className="site-main">
@@ -34,6 +36,7 @@ ReactDOM.render(
                     <Route path="/button" component={ButtonExample}/>
                     <Route path="/dialog" component={DialogExample}/>
                     <Route path="/layout" component={LayoutExample}/>
+                    <Route path="/form" component={FormExample}/>
                 </Content>
             </Layout>
             <Footer className="site-footer">
