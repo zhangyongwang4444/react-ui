@@ -26,9 +26,9 @@ ReactDOM.render(
                     <h2>组件</h2>
                     <ul>
                         <li><NavLink to="/icon">Icon</NavLink></li>
-                        <li><NavLink to="/dialog">Dialog</NavLink></li>
-                        <li><NavLink to="/layout">Layout</NavLink></li>
-                        <li><NavLink to="/form">Form</NavLink></li>
+                        <li><NavLink to="/dialog">对话框</NavLink></li>
+                        <li><NavLink to="/layout">布局</NavLink></li>
+                        <li><NavLink to="/form">表单</NavLink></li>
                     </ul>
                 </Aside>
                 <Content className="site-main">
