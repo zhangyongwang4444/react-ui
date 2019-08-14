@@ -3,8 +3,8 @@ import Form from "./form";
 import {useState, Fragment} from "react";
 
 const FormExample: React.FunctionComponent = () => {
-    const [formData] = useState({
-        username: '',
+    const [formData, setFormData] = useState({
+        username: 'frank',
         password: ''
     });
     const [fields] = useState([
@@ -22,6 +22,7 @@ const FormExample: React.FunctionComponent = () => {
                       <button>返回</button>
                   </Fragment>
               }
+              onChange={(newValue) => setFormData(newValue)}
               onSubmit={onSubmit}
         />
     )
