@@ -1,7 +1,7 @@
 import * as React from "react";
 import {ReactFragment} from "react";
 
-interface FormValue {
+export interface FormValue {
     [K: string]: any
 }
 
@@ -19,8 +19,9 @@ const Form: React.FunctionComponent<Props> = (props) => {
         e.preventDefault();
         props.onSubmit(e);
     };
-    const onInputChange = (name: string, e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(name, e.target.value);
+    const onInputChange = (name: string, value: string) => {
+        const newFormValue = {...formData, [name]: value};
+        props.onChange(newFormValue)
     };
     return (
         <form onSubmit={onSubmit}>
@@ -28,8 +29,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
                 <div key={f.name}>
                     {f.label}
                     <input type={f.input.type} value={formData[f.name]}
-                        // onChange={(e) => onInputChange(f.name, e.target.value)}
-                           onChange={onInputChange.bind(null, f.name)}
+                           onChange={(e) => onInputChange(f.name, e.target.value)}
                     />
                 </div>
             )}
