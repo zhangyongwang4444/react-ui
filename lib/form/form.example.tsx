@@ -11,6 +11,9 @@ const FormExample: React.FunctionComponent = () => {
         {name: 'username', label: '用户名', input: {type: 'text'}},
         {name: 'password', label: '密码', input: {type: 'password'}}
     ]);
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        console.log(formData);
+    };
     return (
         <Form value={formData} fields={fields}
               buttons={
@@ -19,6 +22,7 @@ const FormExample: React.FunctionComponent = () => {
                       <button>返回</button>
                   </Fragment>
               }
+              onSubmit={onSubmit}
         />
     )
 };
