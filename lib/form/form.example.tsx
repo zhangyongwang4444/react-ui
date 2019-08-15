@@ -17,6 +17,7 @@ const FormExample: React.FunctionComponent = () => {
             {key: 'username', required: true}
         ];
         const errors = Validator(formData, rules);
+        console.log('--errors--');
         console.log(errors);
     };
     return (
