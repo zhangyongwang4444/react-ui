@@ -29,7 +29,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
     };
     return (
         <form onSubmit={onSubmit}>
-            <table className="react-ui-form-table">
+            <table>
                 {props.fields.map(f =>
                     <tr className={classes('react-ui-form-row')} key={f.name}>
                         <td>

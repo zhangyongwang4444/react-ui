@@ -11,20 +11,4 @@
       margin-bottom: 0;
     }
   }
-
-  &-label {
-    text-align: justify;
-    overflow: hidden;
-    display: inline-block;
-    width: 6em;
-    height: 22px;
-
-    &::after {
-      content: '另一行字';
-      display: inline-block;
-      width: 100%;
-      height: 0;
-      overflow: hidden;
-    }
-  }
 }
