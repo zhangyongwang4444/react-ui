@@ -10,10 +10,10 @@ const FormExample: React.FunctionComponent = () => {
         password: ''
     });
     const [fields] = useState([
-        {name: 'username', label: '营业执照号码', input: {type: 'text'}},
+        {name: 'username', label: '用户名', input: {type: 'text'}},
         {name: 'password', label: '密码', input: {type: 'password'}}
     ]);
-    const [errors] = useState({});
+    const [errors, setErrors] = useState({});
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         const rules = [
             {key: 'username', required: true},
@@ -22,7 +22,7 @@ const FormExample: React.FunctionComponent = () => {
             {key: 'password', required: true}
         ];
         const errors = Validator(formData, rules);
-        console.log(errors);
+        setErrors(errors);
         if (noError(errors)) {
         }
 
