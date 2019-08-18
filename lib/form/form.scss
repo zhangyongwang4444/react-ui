@@ -1,7 +1,16 @@
 .react-ui-form {
+  &-table {
+    border-collapse: collapse;
+  }
+
+  &-label {
+    line-height: 32px;
+  }
+
   &-td {
     padding-top: 0;
-    padding-bottom: 32px;
+    padding-bottom: 8px;
+    vertical-align: top;
   }
 
   &-tr:first-child &-td {
@@ -14,5 +23,9 @@
 
   &-td + &-td {
     padding-left: 8px;
+  }
+
+  &-error {
+
   }
 }
