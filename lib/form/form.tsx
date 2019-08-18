@@ -1,6 +1,8 @@
 import * as React from "react";
 import {ReactFragment} from "react";
 import Input from "../input/input";
+import classes from "../helpers/classes";
+import './form.scss';
 
 export interface FormValue {
     [K: string]: any
@@ -28,8 +30,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
     return (
         <form onSubmit={onSubmit}>
             {props.fields.map(f =>
-                <div key={f.name}>
-                    {f.label}
+                <div className={classes('react-ui-form-row')} key={f.name}>
+                    <span className="react-ui-form-label">{f.label}</span>
                     <Input type={f.input.type} value={formData[f.name]}
                            onChange={(e) => onInputChange(f.name, e.target.value)}
                     />
