@@ -31,12 +31,14 @@ const Form: React.FunctionComponent<Props> = (props) => {
         <form onSubmit={onSubmit}>
             <table>
                 {props.fields.map(f =>
-                    <tr className={classes('react-ui-form-row')} key={f.name}>
-                        <td>
+                    <tr className={classes('react-ui-form-tr')} key={f.name}>
+                        <td className="react-ui-form-td">
                             <span className="react-ui-form-label">{f.label}</span>
                         </td>
-                        <td>
-                            <Input type={f.input.type} value={formData[f.name]}
+                        <td className="react-ui-form-td">
+                            <Input className="react-ui-form-input"
+                                   type={f.input.type}
+                                   value={formData[f.name]}
                                    onChange={(e) => onInputChange(f.name, e.target.value)}
                             />
                             <div>{props.errors[f.name]}</div>

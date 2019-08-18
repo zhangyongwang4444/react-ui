@@ -1,14 +1,18 @@
 .react-ui-form {
-  &-row {
-    margin-top: 24px;
-    margin-bottom: 24px;
+  &-td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 
-    &:first-child {
-      margin-top: 0;
-    }
+  &-tr:first-child &-td {
+    padding-top: 0;
+  }
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+  &-tr:last-child &-td {
+    padding-bottom: 0;
+  }
+
+  &-td + &-td {
+    padding-left: 8px;
   }
 }
