@@ -7,14 +7,14 @@ import Button from "../button/button";
 const usernames = ['frank', 'jack', 'alice', 'bob'];
 const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
     setTimeout(() => {
+        console.log('我现在知道用户名是否存在了');
         if (usernames.indexOf(username) >= 0) {
             succeed();
         } else {
             fail();
         }
-    }, 3000);
+    }, 6000);
 };
-
 
 const FormExample: React.FunctionComponent = () => {
     const [formData, setFormData] = useState<FormValue>({
@@ -34,7 +34,8 @@ const FormExample: React.FunctionComponent = () => {
                 key: 'username', validator: {
                     name: 'unique',
                     validate(username: string) {
-                        return new Promise((resolve, reject) => {
+                        console.log('有人调用了 validate 了 ！');
+                        return new Promise<void>((resolve, reject) => {
                             checkUserName(username, resolve, reject);
                         });
                     }
@@ -43,11 +44,12 @@ const FormExample: React.FunctionComponent = () => {
             {key: 'username', pattern: /^[A-Za-z0-9]+$/},
             {key: 'password', required: true}
         ];
-        const errors = Validator(formData, rules);
-        setErrors(errors);
-        if (noError(errors)) {
-        }
-
+        Validator(formData, rules, (errors) => {
+            console.log(errors);
+            setErrors(errors);
+            if (noError(errors)) {
+            }
+        });
     };
     return (
         <div>
