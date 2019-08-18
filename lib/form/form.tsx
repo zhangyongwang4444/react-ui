@@ -29,18 +29,24 @@ const Form: React.FunctionComponent<Props> = (props) => {
     };
     return (
         <form onSubmit={onSubmit}>
-            {props.fields.map(f =>
-                <div className={classes('react-ui-form-row')} key={f.name}>
-                    <span className="react-ui-form-label">{f.label}</span>
-                    <Input type={f.input.type} value={formData[f.name]}
-                           onChange={(e) => onInputChange(f.name, e.target.value)}
-                    />
-                    <div>{props.errors[f.name]}</div>
+            <table>
+                {props.fields.map(f =>
+                    <tr className={classes('react-ui-form-row')} key={f.name}>
+                        <td>
+                            <span>{f.label}</span>
+                        </td>
+                        <td>
+                            <Input type={f.input.type} value={formData[f.name]}
+                                   onChange={(e) => onInputChange(f.name, e.target.value)}
+                            />
+                            <div>{props.errors[f.name]}</div>
+                        </td>
+                    </tr>
+                )}
+                <div>
+                    {props.buttons}
                 </div>
-            )}
-            <div>
-                {props.buttons}
-            </div>
+            </table>
         </form>
     )
 };
