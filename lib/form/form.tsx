@@ -29,11 +29,11 @@ const Form: React.FunctionComponent<Props> = (props) => {
     };
     return (
         <form onSubmit={onSubmit}>
-            <table>
+            <table className="react-ui-form-table">
                 {props.fields.map(f =>
                     <tr className={classes('react-ui-form-row')} key={f.name}>
                         <td>
-                            <span>{f.label}</span>
+                            <span className="react-ui-form-label">{f.label}</span>
                         </td>
                         <td>
                             <Input type={f.input.type} value={formData[f.name]}
