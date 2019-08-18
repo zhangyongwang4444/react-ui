@@ -14,7 +14,8 @@ interface Props {
     buttons: ReactFragment;
     onSubmit: React.FormEventHandler<HTMLFormElement>;
     onChange: (value: FormValue) => void;
-    errors: { [K: string]: string[] }
+    errors: { [K: string]: string[] };
+    errorsDisplayMode?: 'first' | 'all';
 }
 
 const Form: React.FunctionComponent<Props> = (props) => {
@@ -43,7 +44,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
                             />
                             <div className="react-ui-form-error">
                                 {props.errors[f.name] ?
-                                    props.errors[f.name].join('，') :
+                                    (props.errorsDisplayMode === 'first' ?
+                                        props.errors[f.name][0] : props.errors[f.name].join()) :
                                     <span>&nbsp;</span>
                                 }
                             </div>
@@ -59,4 +61,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
     )
 };
 
+
+Form.defaultProps = {
+    errorsDisplayMode: 'first'
+};
 export default Form;
