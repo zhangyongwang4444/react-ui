@@ -41,7 +41,12 @@ const Form: React.FunctionComponent<Props> = (props) => {
                                    value={formData[f.name]}
                                    onChange={(e) => onInputChange(f.name, e.target.value)}
                             />
-                            <div>{props.errors[f.name] && props.errors[f.name].join('，')}</div>
+                            <div>
+                                {
+                                    props.errors[f.name] &&  // 判空
+                                    props.errors[f.name].join('，')
+                                }
+                            </div>
                         </td>
                     </tr>
                 )}
