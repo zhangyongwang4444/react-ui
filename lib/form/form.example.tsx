@@ -50,6 +50,13 @@ const FormExample: React.FunctionComponent = () => {
             }
         });
     };
+
+    const transformError = (message: string) => {
+        const map: any = {
+            unique: '用户名已存在'
+        };
+        return map[message]
+    };
     return (
         <div>
             <Form value={formData}
@@ -63,6 +70,7 @@ const FormExample: React.FunctionComponent = () => {
                   errors={errors}
                   onChange={(newValue) => setFormData(newValue)}
                   onSubmit={onSubmit}
+                  transformError={transformError}
             />
         </div>
     )
