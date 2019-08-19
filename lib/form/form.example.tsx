@@ -53,7 +53,10 @@ const FormExample: React.FunctionComponent = () => {
 
     const transformError = (message: string) => {
         const map: any = {
-            unique: '用户名已存在'
+            unique: 'username is taken',
+            required: 'required',
+            minLength: 'too short',
+            maxLength: 'too long'
         };
         return map[message]
     };
