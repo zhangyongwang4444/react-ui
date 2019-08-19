@@ -29,6 +29,14 @@ const Form: React.FunctionComponent<Props> = (props) => {
         const newFormValue = {...formData, [name]: value};
         props.onChange(newFormValue)
     };
+    const transformError = (message: string) => {
+        const map: any = {
+            required: '必填',
+            minLength: '太短',
+            maxLength: '太长'
+        };
+        return props.transformError && props.transformError(message) || map[message] || '未知错误';
+    };
     return (
         <form onSubmit={onSubmit}>
             <table className="react-ui-form-table">
@@ -47,8 +55,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
                             <div className="react-ui-form-error">
                                 {props.errors[f.name] ?
                                     (props.errorsDisplayMode === 'first' ?
-                                        props.transformError!(props.errors[f.name][0]) :
-                                        props.errors[f.name].map(props.transformError!).join()) :
+                                        transformError!(props.errors[f.name][0]) :
+                                        props.errors[f.name].map(transformError!).join()) :
                                     <span>&nbsp;</span>
                                 }
                             </div>
@@ -67,14 +75,6 @@ const Form: React.FunctionComponent<Props> = (props) => {
 
 
 Form.defaultProps = {
-    errorsDisplayMode: 'first',
-    transformError: (message: string) => {
-        const map: any = {
-            required: '必填',
-            minLength: '太短',
-            maxLength: '太长'
-        };
-        return map[message] || '未知错误';
-    }
+    errorsDisplayMode: 'first'
 };
 export default Form;
