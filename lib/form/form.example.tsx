@@ -13,7 +13,7 @@ const checkUserName = (username: string, succeed: () => void, fail: () => void) 
         } else {
             fail();
         }
-    }, 6000);
+    }, 3000);
 };
 
 const FormExample: React.FunctionComponent = () => {
@@ -55,7 +55,7 @@ const FormExample: React.FunctionComponent = () => {
     };
     return (
         <div>
-            {JSON.stringify(errors)}
+            {/*{JSON.stringify(errors)}*/}
             <Form value={formData}
                   fields={fields}
                   buttons={
