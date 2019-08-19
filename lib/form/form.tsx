@@ -33,7 +33,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
         const map: any = {
             required: '必填',
             minLength: '太短',
-            maxLength: '太长'
+            maxLength: '太长',
+            pattern:'格式不正确'
         };
         return props.transformError && props.transformError(message) || map[message] || '未知错误';
     };

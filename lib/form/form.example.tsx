@@ -30,18 +30,18 @@ const FormExample: React.FunctionComponent = () => {
         const rules = [
             {key: 'username', required: true},
             {key: 'username', minLength: 8, maxLength: 16},
+            {key: 'username', pattern: /^[A-Za-z0-9]+$/},
             {
                 key: 'username', validator: {
                     name: 'unique',
                     validate(username: string) {
                         console.log('有人调用了 validate 了 ！');
                         return new Promise<void>((resolve, reject) => {
-                            checkUserName(username, resolve, reject);
+                            checkUserName(username, resolve, ()=>{});
                         });
                     }
                 }
             },
-            {key: 'username', pattern: /^[A-Za-z0-9]+$/},
             {key: 'password', required: true}
         ];
         Validator(formData, rules, (errors) => {
@@ -54,9 +54,9 @@ const FormExample: React.FunctionComponent = () => {
     const transformError = (message: string) => {
         const map: any = {
             unique: 'username is taken',
-            required: 'required',
-            minLength: 'too short',
-            maxLength: 'too long'
+            // required: 'required',
+            // minLength: 'too short',
+            // maxLength: 'too long'
         };
         return map[message]
     };
