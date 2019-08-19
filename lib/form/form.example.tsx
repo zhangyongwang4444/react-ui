@@ -45,6 +45,7 @@ const FormExample: React.FunctionComponent = () => {
             {key: 'password', required: true}
         ];
         Validator(formData, rules, (errors) => {
+            console.log('errors');
             console.log(errors);
             setErrors(errors);
             if (noError(errors)) {
