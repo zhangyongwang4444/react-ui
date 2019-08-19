@@ -4,7 +4,7 @@ import {useState, Fragment} from "react";
 import Validator, {noError} from "./validator";
 import Button from "../button/button";
 
-const usernames = ['frank', 'jack', 'alice', 'bob'];
+const usernames = ['frank', 'frankfrank', 'jack', 'alice', 'bob'];
 const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
     setTimeout(() => {
         console.log('我现在知道用户名是否存在了');
