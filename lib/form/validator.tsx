@@ -41,7 +41,6 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
         const value = formValue[rule.key];
 
         if (rule.validator) {
-            //自定义校验器
             const promise = rule.validator.validate(value);
             addError(rule.key, {message: '用户名已经存在', promise});
         }
@@ -57,27 +56,21 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
         if (rule.pattern && !(rule.pattern.test(value))) {
             addError(rule.key, {message: '格式不正确'});
         }
-        // console.log(rule);
     });
-    const promiseList = flat(Object.values(errors))
+
+    Promise.all(flat(Object.values(errors))
         .filter(item => item.promise)
-        .map(item => item.promise);
-    Promise.all(promiseList)
-        .then(() => {
-            const newErrors = fromEntries(
+        .map(item => item.promise)
+    ).finally(() => {
+        callback(
+            fromEntries(
                 Object.keys(errors)
                     .map<[string, string[]]>(key =>
                         [key, errors[key].map((item: OneError) => item.message)]
-                    ));
-            callback(newErrors)
-        }, () => {
-            const newErrors = fromEntries(
-                Object.keys(errors)
-                    .map<[string, string[]]>(key =>
-                        [key, errors[key].map((item: OneError) => item.message)]
-                    ));
-            callback(newErrors)
-        });
+                    )
+            )
+        )
+    });
 };
 
 export default Validator;

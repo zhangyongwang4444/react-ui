@@ -45,17 +45,13 @@ const FormExample: React.FunctionComponent = () => {
             {key: 'password', required: true}
         ];
         Validator(formData, rules, (errors) => {
-            console.log('errors');
-            console.log(errors);
             setErrors(errors);
-            console.log('确定 set 了');
             if (noError(errors)) {
             }
         });
     };
     return (
         <div>
-            {/*{JSON.stringify(errors)}*/}
             <Form value={formData}
                   fields={fields}
                   buttons={
