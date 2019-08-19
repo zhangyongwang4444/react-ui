@@ -1,3 +1,11 @@
+/*
+*  TODO:
+*  1. 支持子字段编辑（子表单）
+*  2. 支持更多的 type / 自定义的  input
+*  3. 支持手机端
+*
+*
+ */
 import * as React from "react";
 import {ReactFragment} from "react";
 import Input from "../input/input";
@@ -34,7 +42,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
             required: '必填',
             minLength: '太短',
             maxLength: '太长',
-            pattern:'格式不正确'
+            pattern: '格式不正确'
         };
         return props.transformError && props.transformError(message) || map[message] || '未知错误';
     };

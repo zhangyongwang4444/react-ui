@@ -23,7 +23,7 @@ const FormExample: React.FunctionComponent = () => {
     });
     const [fields] = useState([
         {name: 'username', label: '用户名', input: {type: 'text'}},
-        {name: 'password', label: '密码', input: {type: 'password'}}
+        {name: 'password', label: '密码', input: {type: 'password'}},
     ]);
     const [errors, setErrors] = useState({});
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +37,7 @@ const FormExample: React.FunctionComponent = () => {
                     validate(username: string) {
                         console.log('有人调用了 validate 了 ！');
                         return new Promise<void>((resolve, reject) => {
-                            checkUserName(username, resolve, ()=>{});
+                            checkUserName(username, resolve, reject);
                         });
                     }
                 }
