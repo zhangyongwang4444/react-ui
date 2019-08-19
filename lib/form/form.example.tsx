@@ -48,12 +48,14 @@ const FormExample: React.FunctionComponent = () => {
             console.log('errors');
             console.log(errors);
             setErrors(errors);
+            console.log('确定 set 了');
             if (noError(errors)) {
             }
         });
     };
     return (
         <div>
+            {JSON.stringify(errors)}
             <Form value={formData}
                   fields={fields}
                   buttons={

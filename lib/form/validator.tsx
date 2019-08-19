@@ -64,20 +64,23 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
         .map(item => item.promise);
     Promise.all(promiseList)
         .then(() => {
-            const newErrors = Object.keys(errors).map(key =>
-                errors[key].map((item:OneError) => item.message)
-            );
+            const newErrors = fromEntries(
+                Object.keys(errors)
+                    .map<[string, string[]]>(key =>
+                        [key, errors[key].map((item: OneError) => item.message)]
+                    ));
             callback(newErrors)
         }, () => {
-            const newErrors = Object.keys(errors).map(key =>
-                errors[key].map((item:OneError) => item.message)
-            );
+            const newErrors = fromEntries(
+                Object.keys(errors)
+                    .map<[string, string[]]>(key =>
+                        [key, errors[key].map((item: OneError) => item.message)]
+                    ));
             callback(newErrors)
         });
 };
 
 export default Validator;
-
 
 function flat(array: Array<any>) {
     const result = [];
@@ -91,3 +94,10 @@ function flat(array: Array<any>) {
     return result;
 }
 
+function fromEntries(array: Array<[string, string[]]>) {
+    const result: { [key: string]: string[] } = {};
+    for (let i = 0; i < array.length; i++) {
+        result[array[i][0]] = array[i][1];
+    }
+    return result;
+}
