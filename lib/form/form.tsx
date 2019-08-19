@@ -31,6 +31,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
     return (
         <form onSubmit={onSubmit}>
             <table className="react-ui-form-table">
+                <tbody>
                 {props.fields.map(f =>
                     <tr className={classes('react-ui-form-tr')} key={f.name}>
                         <td className="react-ui-form-td">
@@ -56,6 +57,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
                     <td className="react-ui-form-td"/>
                     <td className="react-ui-form-td">{props.buttons}</td>
                 </tr>
+                </tbody>
             </table>
         </form>
     )
