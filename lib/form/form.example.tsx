@@ -6,14 +6,14 @@ import Button from "../button/button";
 
 const usernames = ['frank', 'frankfrank', 'jack', 'alice', 'bob'];
 const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
-    setTimeout(() => {
+    // setTimeout(() => {
         console.log('我现在知道用户名是否存在了');
         if (usernames.indexOf(username) >= 0) {
             succeed();
         } else {
             fail();
         }
-    }, 3000);
+    // }, 3000);
 };
 
 const FormExample: React.FunctionComponent = () => {
