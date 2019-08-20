@@ -5,9 +5,9 @@ interface FormRule {
     required?: boolean;
     minLength?: number;
     maxLength?: number;
-    pattern?: RegExp;
+    pattern?: RegExp
     validator?: {
-        name: string,
+        validatorName: string,
         validate: (value: string) => Promise<void>
     }
 }
@@ -41,7 +41,7 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
         const value = formValue[rule.key];
         if (rule.validator) {
             const promise = rule.validator.validate(value);
-            addError(rule.key, {message: rule.validator.name, promise});
+            addError(rule.key, {message: rule.validator.validatorName, promise});
         }
         if (rule.required && isEmpty(value)) {
             addError(rule.key, {message: 'required'});

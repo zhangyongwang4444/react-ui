@@ -33,7 +33,7 @@ const FormExample: React.FunctionComponent = () => {
             {key: 'username', pattern: /^[A-Za-z0-9]+$/},
             {
                 key: 'username', validator: {
-                    name: 'unique',
+                    validatorName: 'unique',
                     validate(username: string) {
                         console.log('有人调用了 validate 了 ！');
                         return new Promise<void>((resolve, reject) => {
@@ -53,10 +53,11 @@ const FormExample: React.FunctionComponent = () => {
 
     const transformError = (message: string) => {
         const map: any = {
-            unique: 'username is taken',
-            // required: 'required',
-            // minLength: 'too short',
-            // maxLength: 'too long'
+            unique: 'exist or notExist',
+            required: 'required',
+            minLength: 'too short',
+            maxLength: 'too long',
+            pattern: 'Incorrect format'
         };
         return map[message]
     };
@@ -64,13 +65,13 @@ const FormExample: React.FunctionComponent = () => {
         <div>
             <Form value={formData}
                   fields={fields}
+                  errors={errors}
                   buttons={
                       <Fragment>
                           <Button type="submit" level='important'>提交</Button>
                           <Button>返回</Button>
                       </Fragment>
                   }
-                  errors={errors}
                   onChange={(newValue) => setFormData(newValue)}
                   onSubmit={onSubmit}
                   transformError={transformError}
