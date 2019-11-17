@@ -57,19 +57,21 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
         }
     });
 
-    Promise.all(flat(Object.values(errors))
-        .filter(item => item.promise)
-        .map(item => item.promise)
-    ).finally(() => {
-        callback(
-            fromEntries(
-                Object.keys(errors)
-                    .map<[string, string[]]>(key =>
-                        [key, errors[key].map((item: OneError) => item.message)]
-                    )
+    Promise.all(
+        flat(Object.values(errors))
+            .filter(item => item.promise)
+            .map(item => item.promise)
+    )
+        .finally(() => {
+            callback(
+                fromEntries(
+                    Object.keys(errors)
+                        .map<[string, string[]]>(key =>
+                            [key, errors[key].map((item: OneError) => item.message)]
+                        )
+                )
             )
-        )
-    });
+        });
 };
 
 export default Validator;

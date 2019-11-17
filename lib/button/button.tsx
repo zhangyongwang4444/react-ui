@@ -10,9 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FunctionComponent<Props> = (props) => {
     const {className, children, level, ...restProps} = props;
     return (
-        <button className={
-            classes('react-ui-button', `react-ui-button-${level}`, className)
-        }
+        <button className={classes('react-ui-button', `react-ui-button-${level}`, className)}
                 {...restProps}>
             {children}
         </button>
