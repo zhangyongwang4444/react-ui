@@ -9,8 +9,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const Scroll: React.FunctionComponent<Props> = (props) => {
     const {children, ...rest} = props;
     const [barHeight, setBarHeight] = useState(0);
+    const [barTop, setBarTop] = useState(0);
     const onScroll: UIEventHandler = (e) => {
-
+        const {current} = containerRef;
+        const scrollHeight = current!.scrollHeight;
+        const viewHeight = current!.getBoundingClientRect().height;
+        const scrollTop = current!.scrollTop;
+        setBarTop(scrollTop * viewHeight / scrollHeight);
     };
     const containerRef = useRef<HTMLDivElement>(null);
     useEffect(() => { //mounted
@@ -27,7 +32,7 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
                 {children}
             </div>
             <div className="react-ui-scroll-track">
-                <div className="react-ui-scroll-bar" style={{height: barHeight}}/>
+                <div className="react-ui-scroll-bar" style={{height: barHeight, transform: `translateY(${barTop}px)`}}/>
             </div>
         </div>
     );
