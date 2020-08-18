@@ -1,4 +1,4 @@
-import React, {HTMLAttributes, UIEventHandler, useEffect, useRef, useState} from 'react';
+import React, {HTMLAttributes, MouseEventHandler, UIEventHandler, useEffect, useRef, useState} from 'react';
 import './scroll.scss';
 import scrollbarWidth from './scrollbar-width';
 
@@ -24,15 +24,39 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
         setBarHeight(viewHeight * viewHeight / scrollHeight);
 
     }, []);
+    const draggingRef = useRef(false);
+    const firstYRef = useRef(0);
+    const firstBarTopRef = useRef(0);
+    const onMouseDownBar: MouseEventHandler = (e) => {
+        draggingRef.current = true;
+        firstYRef.current = e.clientY;
+        firstBarTopRef.current = barTop;
+        console.log('start');
+    };
+    const onMouseMoveBar: MouseEventHandler = (e) => {
+        if (draggingRef.current) {
+            const delta = e.clientY - firstYRef.current;
+            console.log(firstBarTopRef.current + delta);
+            setBarTop(firstBarTopRef.current + delta);
+        }
+    };
+    const onMouseUpBar: MouseEventHandler = () => {
+        draggingRef.current = false;
+        console.log('end');
+    };
     return (
-        <div className='react-ui-scroll' {...rest}>
+        <div className='react-ui-scroll' {...rest}
+             onMouseMove={onMouseMoveBar}
+             onMouseUp={onMouseUpBar}>
             <div className='react-ui-scroll-inner' style={{right: -scrollbarWidth()}}
                  ref={containerRef}
                  onScroll={onScroll}>
                 {children}
             </div>
             <div className="react-ui-scroll-track">
-                <div className="react-ui-scroll-bar" style={{height: barHeight, transform: `translateY(${barTop}px)`}}/>
+                <div className="react-ui-scroll-bar" style={{height: barHeight, transform: `translateY(${barTop}px)`}}
+                     onMouseDown={onMouseDownBar}
+                />
             </div>
         </div>
     );
