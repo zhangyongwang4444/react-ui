@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangyongwang4444/ReactUI.git"
+    "url": "git+https://github.com/zhangyongwang4444/react-ui.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhangyongwang4444/ReactUI/issues"
+    "url": "https://github.com/zhangyongwang4444/react-ui/issues"
   },
-  "homepage": "https://github.com/zhangyongwang4444/ReactUI#readme",
+  "homepage": "https://github.com/zhangyongwang4444/react-ui#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
