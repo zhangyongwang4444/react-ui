@@ -9,7 +9,20 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const Scroll: React.FunctionComponent<Props> = (props) => {
     const {children, ...rest} = props;
     const [barHeight, setBarHeight] = useState(0);
-    const [barTop, setBarTop] = useState(0);
+    const [barTop, _setBarTop] = useState(0);
+    const setBarTop = (number: number) => {
+        if (number < 0) {
+            return;
+        }
+        const {current} = containerRef;
+        const scrollHeight = current!.scrollHeight;
+        const viewHeight = current!.getBoundingClientRect().height;
+        const maxBarTop = (scrollHeight - viewHeight) * viewHeight / scrollHeight;
+        if (number > maxBarTop) {
+            return;
+        }
+        _setBarTop(number);
+    };
     const onScroll: UIEventHandler = (e) => {
         const {current} = containerRef;
         const scrollHeight = current!.scrollHeight;
@@ -33,21 +46,27 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
         firstBarTopRef.current = barTop;
         console.log('start');
     };
-    const onMouseMoveBar: MouseEventHandler = (e) => {
+    const onMouseMoveBar = (e: MouseEvent) => {
         if (draggingRef.current) {
             const delta = e.clientY - firstYRef.current;
             console.log(firstBarTopRef.current + delta);
             setBarTop(firstBarTopRef.current + delta);
         }
     };
-    const onMouseUpBar: MouseEventHandler = () => {
+    const onMouseUpBar = () => {
         draggingRef.current = false;
         console.log('end');
     };
+    useEffect(() => {
+        document.addEventListener('mouseup', onMouseUpBar);
+        document.addEventListener('mousemove', onMouseMoveBar);
+        return () => {
+            document.removeEventListener('mouseup', onMouseMoveBar);
+            document.removeEventListener('mousemove', onMouseMoveBar);
+        };
+    }, []);
     return (
-        <div className='react-ui-scroll' {...rest}
-             onMouseMove={onMouseMoveBar}
-             onMouseUp={onMouseUpBar}>
+        <div className='react-ui-scroll' {...rest}>
             <div className='react-ui-scroll-inner' style={{right: -scrollbarWidth()}}
                  ref={containerRef}
                  onScroll={onScroll}>
