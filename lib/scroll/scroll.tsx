@@ -1,4 +1,12 @@
-import React, {HTMLAttributes, MouseEventHandler, UIEventHandler, useEffect, useRef, useState} from 'react';
+import React, {
+    HTMLAttributes,
+    MouseEventHandler,
+    TouchEventHandler,
+    UIEventHandler,
+    useEffect,
+    useRef,
+    useState
+} from 'react';
 import './scroll.scss';
 import scrollbarWidth from './scrollbar-width';
 
@@ -83,11 +91,27 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
             document.removeEventListener('selectstart', onSelect);
         };
     }, []);
+    const [translateY, setTranslateY] = useState(0);
+    const onTouchStart: TouchEventHandler = (e) => {
+        console.log('e.touches[0].clientY');
+        console.log(e.touches[0].clientY);
+    };
+    const onTouchMove: TouchEventHandler = (e) => {
+        console.log('e.touches[0].clientY');
+        console.log(e.touches[0].clientY);
+    };
+
     return (
         <div className='react-ui-scroll' {...rest}>
-            <div className='react-ui-scroll-inner' style={{right: -scrollbarWidth()}}
+            <div className='react-ui-scroll-inner'
+                 style={{
+                     right: -scrollbarWidth(),
+                     transform: `translateY(${translateY}px)`
+                 }}
                  ref={containerRef}
-                 onScroll={onScroll}>
+                 onScroll={onScroll}
+                 onTouchMove={onTouchMove}
+                 onTouchStart={onTouchStart}>
                 {children}
             </div>
             {barVisible &&
