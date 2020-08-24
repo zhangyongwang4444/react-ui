@@ -6,10 +6,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 }
 
+const isTouchDevice: boolean = 'ontouchstart' in document.documentElement;
+
 const Scroll: React.FunctionComponent<Props> = (props) => {
     const {children, ...rest} = props;
     const [barHeight, setBarHeight] = useState(0);
     const [barTop, _setBarTop] = useState(0);
+    const [barVisible, setBarVisible] = useState(false);
     const setBarTop = (number: number) => {
         if (number < 0) {
             return;
@@ -24,6 +27,7 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
         _setBarTop(number);
     };
     const onScroll: UIEventHandler = (e) => {
+        setBarVisible(true);
         const {current} = containerRef;
         const scrollHeight = current!.scrollHeight;
         const viewHeight = current!.getBoundingClientRect().height;
@@ -80,11 +84,13 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
                  onScroll={onScroll}>
                 {children}
             </div>
+            {barVisible &&
             <div className="react-ui-scroll-track">
                 <div className="react-ui-scroll-bar" style={{height: barHeight, transform: `translateY(${barTop}px)`}}
                      onMouseDown={onMouseDownBar}
                 />
             </div>
+            }
         </div>
     );
 };
