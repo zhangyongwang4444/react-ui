@@ -152,6 +152,12 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
                 />
             </div>
             }
+            <div className={'react-ui-scroll-pulling'}
+                 style={{height: translateY}}>
+                {translateY === 150
+                    ? <span className="react-ui-scroll-pulling-text">释放手指即可更新</span>
+                    : <span className="react-ui-scroll-pulling-icon">↓</span>}
+            </div>
         </div>
     );
 };
