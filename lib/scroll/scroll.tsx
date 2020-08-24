@@ -91,20 +91,40 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
             document.removeEventListener('selectstart', onSelect);
         };
     }, []);
-    const [translateY, setTranslateY] = useState(0);
-    const lastYRef = useRef(0);
-    const onTouchStart: TouchEventHandler = (e) => {
-        lastYRef.current = e.touches[0].clientY;
+    const [translateY, _setTranslateY] = useState(0);
+    const setTranslateY = (y: number) => {
+        if (y < 0) {
+            y = 0;
+        } else if (y > 150) {
+            y = 150;
+        }
+        _setTranslateY(y);
     };
+    const lastYRef = useRef(0);
+    const moveCount = useRef(0);
+    const pulling = useRef(false);
+    const onTouchStart: TouchEventHandler = (e) => {
+        const scrollTop = containerRef.current!.scrollTop;
+        if (scrollTop !== 0) {
+            return;
+        }
+        pulling.current = true;
+        lastYRef.current = e.touches[0].clientY;
+        moveCount.current = 0;
+    };
+
     const onTouchMove: TouchEventHandler = (e) => {
         const deltaY = e.touches[0].clientY - lastYRef.current;
-        if (deltaY > 0) {
-            console.log('想看上面');
-            setTranslateY(translateY + deltaY);
-        } else {
-            console.log('想看下面');
-            setTranslateY(translateY + deltaY);
+        moveCount.current += 1;
+        if (moveCount.current === 1 && deltaY < 0) {
+            pulling.current = false;
+            return;
         }
+        if (!pulling.current) {
+            return;
+        }
+        setTranslateY(translateY + deltaY);
+        console.log(translateY + deltaY);
         lastYRef.current = e.touches[0].clientY;
     };
     const onTouchEnd: TouchEventHandler = (e) => {
