@@ -92,13 +92,23 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
         };
     }, []);
     const [translateY, setTranslateY] = useState(0);
+    const lastYRef = useRef(0);
     const onTouchStart: TouchEventHandler = (e) => {
-        console.log('e.touches[0].clientY');
-        console.log(e.touches[0].clientY);
+        lastYRef.current = e.touches[0].clientY;
     };
     const onTouchMove: TouchEventHandler = (e) => {
-        console.log('e.touches[0].clientY');
-        console.log(e.touches[0].clientY);
+        const deltaY = e.touches[0].clientY - lastYRef.current;
+        if (deltaY > 0) {
+            console.log('想看上面');
+            setTranslateY(translateY + deltaY);
+        } else {
+            console.log('想看下面');
+            setTranslateY(translateY + deltaY);
+        }
+        lastYRef.current = e.touches[0].clientY;
+    };
+    const onTouchEnd: TouchEventHandler = (e) => {
+        setTranslateY(0);
     };
 
     return (
@@ -111,7 +121,8 @@ const Scroll: React.FunctionComponent<Props> = (props) => {
                  ref={containerRef}
                  onScroll={onScroll}
                  onTouchMove={onTouchMove}
-                 onTouchStart={onTouchStart}>
+                 onTouchStart={onTouchStart}
+                 onTouchEnd={onTouchEnd}>
                 {children}
             </div>
             {barVisible &&
